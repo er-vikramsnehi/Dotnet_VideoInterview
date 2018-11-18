@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57f73a27f35b8928"></script>
+
+<hr /><br /><hr />
+
+
+
+<div class="content-wrapper">
+    <section class="content-block">
+        <div id="top-content" class="container-fluid less-padding-bottom w3-text-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-title">
+                            <div class="title-with-icon">
+                                <span class="icon w3-card-4" style="background-color:white;"><img src="~/Design/img/icons/ico-creativity.svg" alt="" style="color:blue;"></span><span class="text" style="color:black;"> Start Your Video Interview</span>
+                            </div>
+                        </div>
+                        <div class="page-subtitle" style="color:black;">powered by: <a href="http://snehi.pro">snehipro</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="domain-search-only container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="domain-input-holder">
+                            
+                      <form  method="get" action="/Home/StartInterview">
+                            <input class="domain-input" type="text" placeholder="Enter your name"  id="uname" name="uname" autofocus><button type="submit" style="color:red;">Start now  <span class="icon icon-device-camera-video"  style="color:darkred;"></span></button>
+                      </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="info-img">
+                @{ Html.RenderAction("SliderHome", "Includes");}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<hr />
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+<section class="content-block quotation-block black-overlay-6 parallax" data-stellar-background-ratio="0.55">
+    <div class="container">
+        <div class="inner-wrapper">
+            <h3 class="block-top-heading text-white">BEST PREPRATION FOR INTERVIEW</h3>
+            <h2 class="text-white">Time to Enhance your Communication Skills!</h2>
+            <div class="btn-container">
+                <a href="http://docs.snehi.pro" class="btn btn-primary has-radius-small">GET QUOTATION</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="content-block">
+    <div class="container">
+        <h3 class="text-center element-heading pb-5">Our Project Process</h3>
+        <div class="tab-container tab-black tab-center-container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tab-button-nav" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tab13" role="tab">Concept</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tab14" role="tab">Design</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tab15" role="tab">Develop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tab16" role="tab">Deploy</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="top-m-space tab-content">
+                <div class="tab-pane fade show active" id="tab13" role="tabpanel">
+                    <p>The Concept is much Importent part to starting any project. Concept is bassically on environmental based, what we required, what should be better. Concept is participating very effective part of project.</p>
+                </div>
+                <div class="tab-pane fade" id="tab14" role="tabpanel">
+                    <p>After Finding Concept we work on next in Designing of project. Actually It is a time taking project. I may exceed more then 20 days. Desining play the very importent role of project to be success or failue. For Desining a project we just have clear about our Ideas. </p>
+                    <p>Ideas can be anything. But For Success of our project wo just work on that Ideas which give Increase our Production. Our Brandings</p>
+                </div>
+                <div class="tab-pane fade" id="tab15" role="tabpanel">
+                    <p>We Developing our Project in Verious Plateform. Such as in Windows Application, Mac Application, Android Application, Plateform Independent (eg. ElectronJs)</p>
+                    <p>Development is also in Some Different Language, In ASP.NET, J2EE, AngularJS, Python, PHP and manymore++.</p>
+                </div>
+                <div class="tab-pane fade" id="tab16" role="tabpanel">
+                    <p>We Deploying our project in Wingows Hosting, Linux Hosting, and Cloud Server</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="content-block information-block p-0 parallax" data-stellar-background-ratio="0.55">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="info-block info-block-v2 block-1 col-sm-6 col-lg-3 text-center">
+                <div class="icon">
+                    <img src="Design/img//icons/icon-planning.png" alt="planning">
+                </div>
+                <h3 class="block-title">Project Planning</h3>
+                <p>Planning  </p>
+            </div>
+            <div class="info-block info-block-v2 block-2 col-sm-6 col-lg-3 text-center">
+                <div class="icon">
+                    <img src="Design/img//icons/icon-design.png" alt="design">
+                </div>
+                <h3 class="block-title">Product Design</h3>
+                <p>Design </p>
+            </div>
+            <div class="info-block info-block-v2 block-3 col-sm-6 col-lg-3 text-center">
+                <div class="icon">
+                    <img src="Design/img//icons/icon-service.png" alt="design">
+                </div>
+                <h3 class="block-title">After Spales Service</h3>
+                <p>...</p>
+            </div>
+            <div class="info-block info-block-v2 block-4 col-sm-6 col-lg-3 text-center">
+                <div class="icon">
+                    <img src="Design/img//icons/icon-support.png" alt="design">
+                </div>
+                <h3 class="block-title">Customer Support</h3>
+                <p><a href="http://docs.snehi.pro">Docs</a> </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

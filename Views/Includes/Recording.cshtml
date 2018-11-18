@@ -1,0 +1,161 @@
+﻿
+<body>
+    <div id="app-cover">
+        <div id="app-box">
+            <div id="toggle-button" class="clickable"></div>
+            <div id="recorder-data">
+                <div id="active-text" class="clickable rec-text">Record</div>
+                <div id="stop-text" class="clickable rec-text active">Stop</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+    /*
+  Some part of JavaScript taken from: https://gist.github.com/SleepWalker/da5636b1abcbaff48c4d#gistcomment-1910566
+  */
+
+    let touchstartX = 0;
+    let touchstartY = 0;
+    let touchendX = 0;
+    let touchendY = 0;
+
+    const gestureZone = document.getElementById('app-cover');
+    const toggleButton = document.getElementById('toggle-button');
+    const recText = document.getElementsByClassName('rec-text');
+    const activeText = document.getElementById('active-text');
+    const clickaBleElements = document.getElementsByClassName('clickable');
+    var timerInterval = null, swipeDir = -1, toggle = false, cElms = clickaBleElements.length;
+
+    gestureZone.addEventListener('touchstart', function (event) {
+        touchstartX = event.changedTouches[0].screenX;
+        touchstartY = event.changedTouches[0].screenY;
+    }, false);
+
+    gestureZone.addEventListener('touchend', function (event) {
+        touchendX = event.changedTouches[0].screenX;
+        touchendY = event.changedTouches[0].screenY;
+        handleGesture();
+    }, false);
+
+    function startRecorder() {
+        var sec = '00', min = 0;
+        activeText.classList.add('lspace');
+        activeText.innerText = min + ':' + sec;
+        timerInterval = setInterval(function () {
+            sec = parseInt(sec);
+            ++sec;
+            if (sec == 60) {
+                sec = '00';
+                ++min;
+            }
+            else {
+                if (sec < 10)
+                    sec = '0' + sec;
+            }
+
+            activeText.innerText = min + ':' + sec;
+        }, 1000);
+    }
+
+    function swipeUp() {
+        if (swipeDir == 2)
+            return;
+        else
+            swipeDir = 2;
+
+        toggleButton.classList.remove('movedown');
+        toggleButton.classList.add('moveup');
+        setTimeout(function () {
+            recText[1].classList.remove('active');
+            activeText.classList.add('active');
+            startRecorder();
+        }, 600);
+    }
+
+    function swipeDown() {
+        if (swipeDir == -1 || swipeDir == 1)
+            return;
+        else
+            swipeDir = 1;
+
+        toggleButton.classList.remove('moveup');
+        toggleButton.classList.add('movedown');
+        clearInterval(timerInterval);
+        setTimeout(function () {
+            recText[0].classList.remove('active');
+            document.getElementById('stop-text').classList.add('active');
+        }, 600);
+
+        setTimeout(function () {
+            activeText.classList.remove('lspace')
+            activeText.innerText = 'Record';
+        }, 900);
+    }
+
+    function handleGesture() {
+        if (touchendY <= touchstartY)
+            swipeUp();
+
+        if (touchendY >= touchstartY)
+            swipeDown();
+    }
+
+    function toggleRecorder() {
+        if ((this.id == 'toggle-button') || (this.id == 'stop-text' && toggle == true) || (this.id == 'active-text' && toggle == false))
+            _toggleRecorder();
+        else
+            return;
+    }
+
+    function _toggleRecorder() {
+        if (toggle) {
+            swipeDown();
+            toggle = false;
+        }
+        else {
+            swipeUp();
+            toggle = true;
+        }
+    }
+
+    for (i = 0; i < cElms; i++) {
+        clickaBleElements[i].addEventListener("click", toggleRecorder, false);
+    }
+</script>
+

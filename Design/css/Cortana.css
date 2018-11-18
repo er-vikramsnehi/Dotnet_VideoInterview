@@ -1,0 +1,333 @@
+﻿.ring {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.outer {
+    width: 200px;
+    height: 200px;
+    border: 40px solid rgba(50,150,200,0.5);
+}
+
+.inner {
+    border: 20px solid rgb(50,150,200);
+    width: 160px;
+    height: 160px;
+}
+
+    .inner.idle {
+        animation: inneridle 2s infinite;
+    }
+
+.outer.idle {
+    animation: outeridle 2s infinite;
+}
+
+.inner.loading {
+    animation: innerloading 1s infinite linear;
+}
+
+.outer.loading {
+    animation: outeridle 1s infinite;
+}
+
+.inner.listening {
+    width: 0px;
+    height: 0px;
+    animation: innerlistening 2s infinite;
+}
+
+.outer.listening {
+    width: 0px;
+    height: 0px;
+    animation: outerlistening 2s infinite;
+}
+
+.inner.working {
+    animation: innerworking 2s infinite;
+}
+
+@keyframes outeridle {
+    0% {
+        border-width: 40px;
+    }
+
+    50% {
+        border-width: 20px;
+    }
+
+    100% {
+        border-width: 40px;
+    }
+}
+
+@keyframes inneridle {
+    0% {
+        width: 160px;
+        height: 160px;
+    }
+
+    50% {
+        width: 180px;
+        height: 180px;
+    }
+
+    100% {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@keyframes innerloading {
+    0% {
+        transform: translate(-50%, -50%) rotateY(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotateY(360deg);
+    }
+}
+
+@keyframes innerlistening {
+    0% {
+        border-width: 80px;
+    }
+
+    50% {
+        border-width: 60px;
+    }
+
+    100% {
+        border-width: 80px;
+    }
+}
+
+@keyframes outerlistening {
+    0% {
+        border-width: 140px;
+    }
+
+    50% {
+        border-width: 160px;
+    }
+
+    100% {
+        border-width: 140px;
+    }
+}
+
+@keyframes innerworking {
+    0% {
+        width: 160px;
+        height: 160px;
+    }
+
+    25% {
+        width: 280px;
+        height: 280px;
+    }
+
+    50% {
+        width: 160px;
+        height: 160px;
+    }
+
+    100% {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* {
+    user-select: none;
+}
+
+    *:focus {
+        outline: none;
+    }
+
+ 
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #222;
+}
+
+#app-cover {
+    position:relative;
+    top: 0;
+   bottom: 0;
+   overflow-y: auto;
+}
+
+#app-box {
+    position: relative;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 155px;
+    margin: -70px auto 0 auto;
+}
+
+#toggle-button {
+    width: 50px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+    #toggle-button:before {
+        content: '';
+        position: absolute;
+        top: 56px;
+        bottom: 6px;
+        left: 6px;
+        width: 38px;
+        opacity: 1;
+        background-color: #bcbcbc;
+        border-radius: 100px;
+        transition: 0.3s linear all;
+    }
+
+    #toggle-button.moveup:before {
+        top: 56px;
+        bottom: 6px;
+        background-color: #ff4f4f;
+        animation: moveup-1 0.3s linear forwards, moveup-2 0.3s linear 0.6s forwards, blink 1s ease-in-out 0.9s infinite;
+    }
+
+    #toggle-button.movedown:before {
+        top: 6px;
+        bottom: 56px;
+        background-color: #bcbcbc;
+        animation: movedown-1 0.3s linear 0s forwards,movedown-2 0.3s linear 0.6s forwards;
+    }
+
+@keyframes moveup-1 {
+    0% {
+        top: 56px;
+    }
+
+    100% {
+        top: 6px;
+    }
+}
+
+@keyframes moveup-2 {
+    0% {
+        bottom: 6px;
+    }
+
+    100% {
+        bottom: 56px;
+    }
+}
+
+@keyframes movedown-1 {
+    0% {
+        bottom: 56px;
+    }
+
+    100% {
+        bottom: 6px;
+    }
+}
+
+@keyframes movedown-2 {
+    0% {
+        top: 6px;
+    }
+
+    100% {
+        top: 56px;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#recorder-data {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 93px;
+    margin-top: -42px;
+}
+
+.rec-text {
+    color: #656565;
+    font-size: 30px;
+    line-height: 1;
+    transition: 0.3s ease color;
+    cursor: pointer;
+}
+
+    .rec-text.active {
+        color: #fff;
+    }
+
+#active-text {
+    margin-bottom: 16px;
+}
+
+    #active-text.lspace {
+        letter-spacing: 2px;
+    }
+
+#hint {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    background-color: #272727;
+}

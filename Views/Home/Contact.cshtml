@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<main class="no-banner">
+    <!-- visual/banner of the page -->
+
+    <!--/visual/banner of the page -->
+    <!-- main content wrapper -->
+    <div class="content-wrapper">
+        <section class="content-block pb-0">
+            <div class="container">
+                <div class="contact-container">
+                    <h6 class="content-title contact-title">GET IN TOUCH WITH US</h6>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- contact form -->
+                            <form action="#" method="post" id="contact_form" class="waituk_contact-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="FIRST NAME *" id="con_fname" name="con_fname" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="LAST NAME *" id="con_lname" name="con_lname" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="tel" placeholder="PHONE NUMBER" id="con_phone" name="con_phone" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" placeholder="EMAIL ADDRESS *" id="con_email" name="con_email" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="MESSAGE *" id="con_message" name="con_message"></textarea>
+                                </div>
+                                <div class="btn-container">
+                                    <button id="btn_sent" class="btn btn-primary btn-arrow">SEND MESSAGE</button>
+                                    <p id="error_message"> </p>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-xl-5 offset-xl-1">
+                            <div class="info-slot">
+                                <div class="icon"><span class="custom-icon-map-marker"></span></div>
+                                <div class="text">
+                                    <address>
+                                        25, East Guru Angad Nagar,
+                                        <br> Swasthya Vihar, Laxmi Nagar
+                                        <br>New Delhi
+                                    </address>
+                                </div>
+                            </div>
+                            <div class="info-slot">
+                                <div class="icon"><span class="custom-icon-headset"></span></div>
+                                <div class="text">
+                                    <ul class="content-list contact-list">
+                                        <li><span class="label-text">HELPLINE</span> <a href="tel:7909025861">Call Us</a></li>
+                                        <li><span class="label-text">Enquire: </span> <a href="tel:7909025861">Just Click to Call</a></li>
+                                        <li><span class="label-text">Email: </span> <a href="emailto:snehi@yahoo.com">Send me Email</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="info-slot">
+                                <div class="icon"><span class="custom-icon-message"></span></div>
+                                <div class="text">
+                                    <ul class="content-list contact-list">
+                                        <li><a href="mailto:snehi@yahoo.com">snehi@yahoo.com</a></li>
+                                        <li><a href="mailto:snehijob@yahoo.com">snehijob@yahoo.com</a></li>
+                                        <li><a href="mailto:snehijob@gmail.com">snehijob@gmail.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="map-holder embed-responsive-21by9 grayscaled-map">
+            <iframe class="embed-responsive-item" src="" height="450" style="border:0"></iframe>
+        </div>
+        <aside class="content-block">
+            <div class="container">
+                <div class="logo-container">
+                    <div class="owl-carousel logo-slide" id="waituk-owl-slide-4">
+                        <div class="slide-item">
+                            <img src="~/Design/img/logo-01.png" alt="images description">
+                        </div>
+                        <div class="slide-item">
+                            <img src="~/Design/img/logo-02.png" alt="images description">
+                        </div>
+                        <div class="slide-item">
+                            <img src="~/Design/img/logo-03.png" alt="images description">
+                        </div>
+                        <div class="slide-item">
+                            <img src="~/Design/img/logo-04.png" alt="images description">
+                        </div>
+                        <div class="slide-item">
+                            <img src="~/Design/img/logo-03.png" alt="images description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <!--/main content wrapper -->
+</main>

@@ -1,0 +1,365 @@
+﻿
+@{
+    ViewBag.Title = "StartInterview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}    <br />
+<div class="w3-hide-small">
+
+    <hr />
+    <br />
+    <hr />
+    <br /><br />
+    <br />
+    
+</div>
+
+<style type="text/css">
+    body {
+        font-family: Helvetica, sans-serif;
+    }
+
+    h2, h3 {
+        margin-top: 0;
+    }
+
+    form {
+        margin-top: 15px;
+    }
+
+        form > input {
+            margin-right: 15px;
+        }
+
+    #results {
+        float: right;
+        margin: 20px;
+        padding: 2px;
+        border: 2px solid;
+        background: #704276;
+    }
+</style>
+
+
+<hr />
+
+<div class="container-fluid">
+    <div class="w3-small w3-black" style="border-radius:50px;">
+        <div id="app-cover" style="height:130px;" class="">
+            <div id="app-box">
+                <div id="toggle-button" class="clickable"></div>
+                <div id="recorder-data">
+                    <div id="active-text" class="clickable rec-text" onclick="startConverting()">Record</div>
+                    <div id="stop-text" class="clickable rec-text active">Stop</div>
+                </div>
+            </div>
+        </div>
+      
+    </div> <br />
+           <div class="row">
+
+               <div class="col-lg-6">
+                   <h2>
+                       Hey, @Request.QueryString.Get("uname");
+                   </h2>
+                   <div class="row">
+                       <img src="~/Design/hr.png" class="img-responsive img-border image-zoom-2 w3-small smaller" style="height:30%;width:25%;float:left;" />
+                       <blockquote>Please use Google Chrome for Better Performance</blockquote>
+                       <blockquote>This project is done in JavaScript and ASP.NET. I donot used any plugin for this project except-chatingbot.</blockquote>
+                   </div>
+
+                   <address class="w3-panel w3-topbar w3-bottombar w3-border-red w3-pale-red">
+                       Question 1 )  Tell me about yourself
+                   </address>
+                   <button onclick="startConverting()" class="btn btn-outline-primary btn-success w3-input w3-orange">Record Your Voice</button>
+                   <center>
+                       <a href="#Record" title="Click Here to Record The Session" onclick="startConverting()">
+                           <div class="icon icon-micro-record-streamline w3-large" style="color:red;height:50px;width:30px;" data-toggle="modal" data-target="#myModal"></div>
+                       </a>
+                   </center>
+                   <fieldset> <div class="border w3-padding" id="answers" style="color:red;font-weight:bolder;"></div></fieldset>
+                  
+               </div>
+               <script>
+                   var x = document.getElementById("myAudio");
+
+                   function playAudio() {
+                       x.play();
+                   }
+
+                   function pauseAudio() {
+                       x.pause();
+                   }
+               </script>
+
+
+               <div class="col-lg-6">
+                   <div id="my_camera" class="w3-border-red w3-panel w3-leftbar w3-border-blue w3-pale-blue"></div>
+                   <form class="w3-panel w3-leftbar w3-border-blue w3-pale-blue">
+                       <input type=button value="Take Snapshot" onClick="take_snapshot()" class="btn btn-success">
+                   </form>
+               </div>
+
+           </div>
+</div>
+<br />
+@{ Html.RenderAction("SliderHome", "Includes");}
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-body" style="margin-top:50%;">
+            <br />
+            <div class="ring outer idle"></div><div class="ring inner idle"></div>
+
+        </div>
+        <div id="answer2" style="color:white;font-weight:bolder;"></div>
+        <!-- Modal content-->
+        @*                                   <div class="modal-content">
+        <button id="idle">Idle</button>
+            <button id="loading">Loading</button>
+            <button id="listening">Listening</button>
+            <button id="working">Working</button>
+          </div>    *@
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    $("#idle").click(function () {
+        $(".loading, .listening, .working").addClass("idle").removeClass("loading listening working");
+    });
+    $("#loading").click(function () {
+        $(".idle, .listening, .working").addClass("loading").removeClass("idle listening working");
+    });
+    $("#listening").click(function () {
+        $(".idle, .loading, .working").addClass("listening").removeClass("idle loading working");
+    });
+    $("#working").click(function () {
+        $(".idle, .loading, .listening").addClass("working").removeClass("idle loading listening");
+    });
+</script>
+
+
+<script type="text/javascript">
+
+    var r = document.getElementById('answers');
+    var r2 = document.getElementById('answer2');
+
+    function startConverting() {
+        if ('webkitSpeechRecognition' in window) {
+            var speechRecognizer = new webkitSpeechRecognition();
+            speechRecognizer.continuous = true;
+            speechRecognizer.interimResults = true;
+            speechRecognizer.lang = 'en-IN';
+            speechRecognizer.start();
+
+            var finalTranscripts = '';
+            speechRecognizer.onresult = function (event) {
+                var interimTranscripts = '';
+                for (var i = event.resultIndex; i < event.results.length; i++) {
+                    var transcript = event.results[i][0].transcript;
+                    transcript.replace("\n", "<br />");
+                    if (event.results[i].isFinal) {
+                        finalTranscripts += transcript;
+                    } else {
+                        interimTranscripts += transcript;
+                    }
+                }
+                r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
+                r2.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
+            };
+            speechRecognizer.onerror = function (event) {
+            
+            };
+        } else {
+            r.innerHTML = 'your browser is not supported, If Google Chrome please Update';
+            r2.innerHTML = 'your browser is not supported, If Google Chrome please Update';
+        }
+    }
+
+  
+
+</script>
+
+<!-- First, include the Webcam.js JavaScript Library -->
+<script type="text/javascript" src="~/Scripts/webcam.js"></script>
+
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+    Webcam.set({
+        // live preview size
+        width: 740,
+        height: 480,
+
+        // device capture size
+        dest_width: 740,
+        dest_height: 480,
+
+        // final cropped size
+        crop_width: 670,
+        crop_height: 480,
+
+        // format and quality
+        image_format: 'jpeg',
+        jpeg_quality: 100
+    });
+
+    Webcam.attach('#my_camera');
+</script>
+
+
+
+
+<script>
+
+    /*
+  Some part of JavaScript taken from: https://gist.github.com/SleepWalker/da5636b1abcbaff48c4d#gistcomment-1910566
+  */
+
+    let touchstartX = 0;
+    let touchstartY = 0;
+    let touchendX = 0;
+    let touchendY = 0;
+
+    const gestureZone = document.getElementById('app-cover');
+    const toggleButton = document.getElementById('toggle-button');
+    const recText = document.getElementsByClassName('rec-text');
+    const activeText = document.getElementById('active-text');
+    const clickaBleElements = document.getElementsByClassName('clickable');
+    var timerInterval = null, swipeDir = -1, toggle = false, cElms = clickaBleElements.length;
+
+    gestureZone.addEventListener('touchstart', function (event) {
+        touchstartX = event.changedTouches[0].screenX;
+        touchstartY = event.changedTouches[0].screenY;
+    }, false);
+
+    gestureZone.addEventListener('touchend', function (event) {
+        touchendX = event.changedTouches[0].screenX;
+        touchendY = event.changedTouches[0].screenY;
+        handleGesture();
+    }, false);
+
+    function startRecorder() {
+        var sec = '00', min = 0;
+        activeText.classList.add('lspace');
+        activeText.innerText = min + ':' + sec;
+        timerInterval = setInterval(function () {
+            sec = parseInt(sec);
+            ++sec;
+            if (sec == 60) {
+                sec = '00';
+                ++min;
+            }
+            else {
+                if (sec < 10)
+                    sec = '0' + sec;
+            }
+
+            activeText.innerText = min + ':' + sec;
+        }, 1000);
+    }
+
+    function swipeUp() {
+        if (swipeDir == 2)
+            return;
+        else
+            swipeDir = 2;
+
+        toggleButton.classList.remove('movedown');
+        toggleButton.classList.add('moveup');
+        setTimeout(function () {
+            recText[1].classList.remove('active');
+            activeText.classList.add('active');
+            startRecorder();
+        }, 600);
+    }
+
+    function swipeDown() {
+        if (swipeDir == -1 || swipeDir == 1)
+            return;
+        else
+            swipeDir = 1;
+
+        toggleButton.classList.remove('moveup');
+        toggleButton.classList.add('movedown');
+        clearInterval(timerInterval);
+        setTimeout(function () {
+            recText[0].classList.remove('active');
+            document.getElementById('stop-text').classList.add('active');
+        }, 600);
+
+        setTimeout(function () {
+            activeText.classList.remove('lspace')
+            activeText.innerText = 'Record';
+        }, 900);
+    }
+
+    function handleGesture() {
+        if (touchendY <= touchstartY)
+            swipeUp();
+
+        if (touchendY >= touchstartY)
+            swipeDown();
+    }
+
+    function toggleRecorder() {
+        if ((this.id == 'toggle-button') || (this.id == 'stop-text' && toggle == true) || (this.id == 'active-text' && toggle == false))
+            _toggleRecorder();
+        else
+            return;
+    }
+
+    function _toggleRecorder() {
+        if (toggle) {
+            swipeDown();
+            toggle = false;
+        }
+        else {
+            swipeUp();
+            toggle = true;
+        }
+    }
+
+    for (i = 0; i < cElms; i++) {
+        clickaBleElements[i].addEventListener("click", toggleRecorder, false);
+    }
+</script>
+
+
+<!-- A button for taking snaps -->
+<!-- Code to handle taking the snapshot and displaying it locally -->
+<script language="JavaScript">
+    function take_snapshot() {
+        // take snapshot and get image data
+        Webcam.snap(function (data_uri) {
+            // display results in page
+            document.getElementById('id1').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id2').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id3').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id4').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id5').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id6').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id7').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id8').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id9').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id10').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+            document.getElementById('id11').innerHTML = '' + ' <img data-u=`image` src="' + data_uri + '"/>';
+        });
+    }
+</script>
+
+
+
